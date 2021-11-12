@@ -1,0 +1,76 @@
+<div id="wrapper">
+	<div id="container">
+	 	<div id="sidebar">
+			<div id="content">
+				<div id="logo">
+					<a href="/">
+						<img src="/img/logo/logo_white.png">
+					</a>				
+				</div>
+				<div id="memberField">
+					<ul>
+						<li> 
+							<a href="#" class="title" id="store">
+								STORE
+								<span class="i"></span>
+							</a>
+							<ul class="hide" id="store_ul">
+								<li  class="text"><a href="/member/product/first"><span>2020F/W</span></a></li>
+								<li  class="text"><a href="/member/product/second">2020S/S</a></li>
+								<li  class="text"><a href="/member/product/outer">OUTER</a></li>
+								<li  class="text"><a href="/member/product/top">TOP</a></li>
+								<li  class="text"><a href="/member/product/bottom">BOTTOM</a></li>
+								<li  class="text"><a href="/member/product/accessories">ACCESSORIES</a></li>
+							</ul>
+						</li>
+						<li><a href="#" class="title"><span>SALE</span></a></li>
+						<li><a href="#" class="title"><span>ABOUT US</span></a></li>
+						<li><a href="#" class="title"><span>COLLECTION</span></a></li>
+						<li>
+							<a href="#" class="title" id="community">
+								COMMUNITY
+								<span class="i"></span>
+							</a>
+							<ul class="hide" id="community_ul">
+								<li  class="text"><a href="/member/board/notice.jsp"><span>NOTICE</span></a></li>
+								<li  class="text"><a href="#">EVENT</a></li>
+								<li  class="text"><a href="/member/board/q&a.jsp">Q&A</a></li>
+								<li  class="text"><a href="/board/list">REVIEW</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="logo_top">
+		<div style="z-index: 1;">
+			<a href="/"><img src="/img/logo/hyungchul_white.png" width="200px"></a>
+		</div>
+		<video src="/video/show_edit.mp4" autoplay="true" id="video1"
+ 		 muted="muted" loop="loop" preload="auto"></video> 
+		
+	</div>
+	{{!-- <%if(session.getAttribute("member")!=null){ %>
+	<%Member mem=(Member)session.getAttribute("member");%>
+	<span id="memName"><%=mem.getName() %>님</span>
+	<%} %> --}}
+	<div id="menubar">
+		<ul>
+			<li><a href="/member/member/login.jsp" title="로그인">로그인<span></span></a></li>
+			<li><a href="#" title="마이페이지"></a></li>
+			<li><a href="/member/member/logout" title="로그아웃">로그아웃<span></span></a></li>
+			<li><a href="/member/member/myPage.jsp" title="마이페이지">마이페이지<span></span></a></li>
+			
+			<li><a href="/member/shopping/directcart" title="장바구니">장바구니<span></span></a></li>
+			<li><a href="#" title="search"><span id="forSearch">검색</span></a></li>
+		</ul>
+		<input type="text" id="search" placeholder="Type to Search" style="display: none">
+	</div>
+	<div id="modalContainer">
+		<div id="modalContent">
+			<span id="modal"></span>
+			<p id="modalP">Something... </p>
+		</div>
+	</div>
+</div>

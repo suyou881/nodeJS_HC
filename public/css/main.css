@@ -1,0 +1,272 @@
+@charset "UTF-8";
+#wrapper{
+	min-width: 1200px;
+}
+
+#logo_top{
+	display:table;
+	width:100%;
+	table-layout:fixed;
+	position: relative;
+	top:20px;
+}
+
+video{
+	z-index: 0;
+    display: table-cell;
+    vertical-align: meddle;
+    width: 76%;
+    margin-left: 12%;
+    top: 44px;
+    position: relative;
+	
+	
+}
+
+#logo_top img{
+	display: table-cell;
+	vertical-align: meddle;
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#logo_top > div {
+	position: relative;
+    z-index: 1;
+    top: -19px;
+}
+
+/* body에 스타일 주기 */
+body{
+    color: #000;
+    background:  #000;
+    text-decoration: none;
+}
+
+/* a태그에 밑줄 없애기 */
+body a{
+	text-decoration: none;
+	width: 300px;
+    display: contents;
+}
+
+/* logo 마진줘서 사이즈 알맞게 */
+#logo{
+	margin-top: 50px;
+	margin-bottom: 70px;
+	z-index: 1;
+}
+
+/* sidebar 고정시켜놓자 */
+#sidebar{
+    position: fixed;
+    width: 180px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    margin-left: 20px;
+    z-index: 1;
+}
+
+#content{
+    position: relative;
+    top: 58px;
+    right: -20px;
+}
+
+
+#memberField .hide{
+	display: none;
+}
+
+#memberField ul{
+    list-style: none;
+    position: relative;
+    right: 20px;
+}
+
+#memberField > ul > li, .text{
+	margin-top: 15px;
+	font: normal normal 16px/1.2 sans-serif;
+	color: white;
+}
+
+.title, .text>a{
+	/* 
+	font-style: ;
+	font-weight: ;
+	font-size: 14px;
+	line-height:1.6;
+	font-family: sans-serif;
+	 */
+	
+	font: normal normal 16px/1.2 sans-serif;
+	color: white;
+}
+
+#menubar {
+	display: inline-block;
+    position: fixed;
+    right: 30px;
+    top: 30px;
+    z-index: 2;
+}
+
+#menubar ul{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#menubar li{
+	display: inline-block;
+	float: left;
+}
+
+
+#menubar li:first-child span:first-child{
+	display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: 0px 0px;
+    background-image: url(/resources/img/menubar/menubar_white.png);
+    background-repeat: no-repeat;
+    background-size: 190px 90px;
+    background-position: -8px -12px;
+    vertical-align: top;
+    margin-left: 0;
+}
+
+#menubar :nth-child(2) span:first-child{
+	display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: 0px 0px;
+       background-image: url(/resources/img/menubar/menubar_white.png);
+    background-repeat: no-repeat;
+    background-size: 190px 90px;
+    background-position: -54px -12px;
+    vertical-align: top;    
+    margin-left:15px;
+}
+
+#menubar :nth-child(3) span:first-child{
+	display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: 0px 0px;
+        background-image: url(/resources/img/menubar/menubar_white.png);
+    background-repeat: no-repeat;
+    background-size: 190px 90px;
+    background-position: -100px -12px;
+    vertical-align: top;    
+      margin-left:15px;
+}
+
+#menubar :nth-child(4) span:first-child{
+	display: inline-block;
+    width: 25px;
+    height: 25px;
+    background-position: 0px 0px;
+        background-image: url(/resources/img/menubar/menubar_white.png);
+    background-repeat: no-repeat;
+    background-size: 190px 90px;
+    background-position: -147px -12px;
+    vertical-align: top;    
+    margin-left:15px;
+}
+
+#search{
+	display: none;
+	width: 159px;
+    padding: 3px 0px;
+    display: table;
+    margin-top: 0px;
+    position: relative;
+    top: 5px;
+}
+
+
+#modalContainer{
+	display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 150px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+#modalContainer > div{
+	background-color: #00000063;
+    margin: auto;
+    /* opacity: 0.7; */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 193px;
+    height: 83%;
+    right: 32px;
+    top: 107px;
+    position: fixed;
+    overflow: overlay;
+    padding: 20px 20px 20px 20x;
+    border: 0;
+}
+
+#modal{
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+#modal:hover, #modal.focus{
+	color: #000;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+#memName{
+	position: fixed;
+    color: white;
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    height: 25px;
+    top: 30px;
+    right: 200px;
+    font: normal normal 14px/2 sans-serif;
+	
+}
+
+#modalContainer > div > div{
+	display: inline-block;
+    width: 92%;
+    margin-left: 4%;
+    margin-top: 10px;
+    overflow: hidden; 
+    text-align: center;
+    color: white;
+}
+
+#modalContainer > div > div > img{
+	width: 100%;
+}
+
+#modalContainer > div > div > span:nth-child(2){
+	margin-top: 10px;
+    display: inline-block;
+}
+
+#modalContainer > div > div > span:nth-child(4){
+    top: -15px;
+    display: inline-block;
+    position: relative;
+}
+
+
