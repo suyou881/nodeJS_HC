@@ -73,7 +73,6 @@ const hbs = exphbs.create({
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
-
 function onHttpStart(){
     console.log("Express http server listening on port " + HTTP_PORT);
 }
