@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HC | 공식 온라인 스토어 </title>
+    <link rel="shortcut icon" type="image/x-icon" href="/resources/img/logo/logo_black.ico" />
+    <style>
+        a {
+            text-decoration: none;
+        }
+
+        #fieldset {
+            width: min-content;
+            height: 320px;
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            border: 1px solid black;
+            padding: 20px;
+            top: 300px;
+        }
+
+        .inp_text>input {
+            width: 300px;
+            height: 50px;
+            border: 0 none;
+            border-bottom: 1px solid #e9e9e9;
+        }
+
+        #login,
+        #join {
+            width: 330px;
+            height: 50px;
+            text-align: center;
+            line-height: 48px;
+            margin-top: 15px;
+            background-color: black;
+            transition-property: background-color;
+            color: white;
+            transition-property: color;
+            transition-duration: 50ms;
+            transition-timing-function: ease-out;
+
+        }
+
+        #login:hover,
+        #join:hover {
+            background-color: white;
+            transition: background-color 50ms ease-out;
+            color: black;
+            transition: color 50ms ease-out;
+        }
+
+        .txt_find {
+            position: relative;
+            right: -30px;
+            top: 20px;
+        }
+
+        #loginId,
+        #loginPw {
+            font-size: medium;
+        }
+
+        #cen_log {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cen_log">
+        <form id="form">
+            <div id="fieldset">
+                <legend class="screen_out" align="center">로그인</legend>
+                <div class="box_login">
+
+                    <div class="inp_text">
+                        <input type="email" id="email" name="email" placeholder="email">
+                        <input type="password" id="password" name="password" placeholder="Password">
+                    </div>
+                    <div id="inp_chk">
+                        <!-- 체크시 checked 추가 -->
+                        <!-- <input type="checkbox" id="keepLogin" class="inp_radio" name="keepLogin">
+						<span class="txt_lab">로그인 상태 유지</span>
+						<input type="checkbox" id="keepId" class="inp_radio" name="keepId">
+						<span class="txt_lab">아이디 저장</span> -->
+
+                        <!-- <input type="radio" name="keepLogin" id="keepLogin" value="HTML">로그인 상태 유지 -->
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="login_append">
+            <!-- <div id="login">LOG IN</div>
+					<div id="join">JOIN US</div> -->
+            <button type="button" id="login">LOG IN</button>
+            <button type="button" id="join">JOIN US</button>
+
+
+            <span class="txt_find">
+                <a href="/member/member/findMember" class="link_find"
+                    style="right: 45px; display: inline-block; position: relative;">아이디 / 비밀번호 찾기 </a>
+                <span style="width: 20px"></span>
+                <a href="#" class="link_find" style="right: 15px; display: inline-block; position: relative;">비회원
+                    주문조회</a>
+            </span>
+        </div>
+    </div>
+    {{#if msg}}
+        <sapn id="msg" style="display:none">{{msg}}</sapn>
+    {{/if}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+
+        //failed to login and display err
+        window.addEventListener('load', ()=>{
+            let err = document.getElementById("msg").innerHTML;
+            if(err !=undefined){
+                alert(err);
+            }
+        });
+
+        // for check email
+        function isEmail(asValue) {
+            var regExp = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
+            return regExp.test(asValue);
+        };
+
+        //click lgin bt
+        document.getElementById("login").addEventListener('click', () => {
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+            let form = document.getElementById("form");
+            form.action = "member_login";
+            form.method = "post";
+            if (email == "") {
+                alert("Enter your e-mail.");
+                document.getElementById("email").value = "";
+                document.getElementById("email").focus();
+                return;
+            } else if (!isEmail(email)) {
+                alert("This is not a valid email address.");
+                document.getElementById("email").value = "";
+                document.getElementById("email").focus();
+                return;
+            }
+            else if (password == "") {
+                alert("Enter your password.");
+                document.getElementById("password").value = "";
+                document.getElementById("password").focus();
+                return;
+            }
+             form.submit();
+        });
+
+        // click join bt
+        document.getElementById("join").addEventListener('click', () => {
+            location.href = "/member_signup";
+        });
+    </script>
+</body>
+
+</html>

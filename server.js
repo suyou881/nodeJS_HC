@@ -10,6 +10,8 @@ const formidable  = require('formidable');
 require("dotenv").config();
 var cloudinary = require('cloudinary').v2;
 const { homedir } = require("os");
+const cookieParser = require("cookie-parser");
+const url = require("url");
 const cloudinaryConfig = (req, res, next) => {cloudinary.config({
     cloud_name: 'dqhxarzwd', 
     api_key: '563238535556164',
@@ -18,6 +20,8 @@ const cloudinaryConfig = (req, res, next) => {cloudinary.config({
     });
     next();
 }
+
+let controller_main = require("./js/controllers/lgin_controller")
 
 var HTTP_PORT = process.env.PORT || 8080;
 
@@ -32,6 +36,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + "/js"));
+app.use(cookieParser("secret"));
 
 const hbs = exphbs.create({
     extname: '.hbs'
@@ -85,16 +90,44 @@ const storage = multer.diskStorage({
   });
   const upload = multer({ storage: storage });
 
-
-    
-
-
-
-
-
 app.get("/", (req,res) => {
-    res.render('member_home');
+    if(req.signedCookies.cookie_login){
+        console.log(req.signedCookies.cookie_login)
+        res.render('member_home',{
+            cookie: req.signedCookies.cookie_login
+        });
+    }else{
+        res.render('member_home');
+    }
 });
+app.get("/member_logout", (req,res) => {
+    res.render('member_logout');
+});
+app.get("/member_myPage", (req,res) => {
+    res.render('member_myPage');
+});
+app.get("/member_signup", (req,res) => {
+    res.render('member_signup');
+});
+app.get("/member_login", (req,res) => {
+    res.render('member_login',{
+        layout: "empty"
+    });
+});
+app.post("/member_login",async (req,res)=>{
+    let email = req.body.email;
+    let password = req.body.password;
+    let result = await controller_main.login(req,res);
+    if(result.code==0){
+        res.redirect("/");
+    }else{
+        res.render("member_login",{
+            layout: "empty",
+            msg: result.msg
+        })
+    }
+})
+
 
 
 app.use((req,res,next)=>{

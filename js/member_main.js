@@ -1,5 +1,3 @@
-
-
 function video(){
     const vi = document.getElementById("video1");
         vi.addEventListener('click', ()=>{
@@ -47,6 +45,6 @@ document.body.addEventListener('click', e =>{
 });
 document.getElementById('search').addEventListener('blur',()=>{
 	search.style.display = 'none';
-        search.value = "";
+    search.value = "";
 })
 video();

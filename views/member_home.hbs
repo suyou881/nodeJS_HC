@@ -57,13 +57,17 @@
 	<%} %> --}}
 	<div id="menubar">
 		<ul>
-			<li><a href="/member/member/login.jsp" title="로그인">로그인<span></span></a></li>
-			<li><a href="#" title="마이페이지"></a></li>
-			<li><a href="/member/member/logout" title="로그아웃">로그아웃<span></span></a></li>
-			<li><a href="/member/member/myPage.jsp" title="마이페이지">마이페이지<span></span></a></li>
-			
-			<li><a href="/member/shopping/directcart" title="장바구니">장바구니<span></span></a></li>
-			<li><a href="#" title="search"><span id="forSearch">검색</span></a></li>
+			{{#if cookie}}
+				<li><a><span style="color :aliceblue">{{cookie}}</span></a></li>
+				<li><a href="/member_logout" title="로그아웃"><span>로그아웃</span></a></li>
+				<li><a href="/member_myPage" title="마이페이지"><span>마이페이지</span></a></li>
+				<li><a href="/member_shopping_directcart" title="장바구니"><span>장바구니</span></a></li>
+				<li><a href="#" title="search"><span id="forSearch">검색</span></a></li>
+			{{else}}
+				<li><a href="/member_login" title="로그인">로그인<span></span></a></li>
+				<li><a href="/member_shopping_directcart" title="장바구니">장바구니<span></span></a></li>
+				<li><a href="#" title="search"><span id="forSearch">검색</span></a></li>
+			{{/if}}
 		</ul>
 		<input type="text" id="search" placeholder="Type to Search" style="display: none">
 	</div>

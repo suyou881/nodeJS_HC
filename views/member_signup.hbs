@@ -1,0 +1,239 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HC | 공식 온라인 스토어</title>
+<link rel="shortcut icon" type="image/x-icon" href="/resources/img/logo/logo_black.ico" />
+<style>
+#header, p{
+text-align: center;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	width: auto;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	padding: 0 100px;
+}
+
+label {
+	margin: 19px 0 8px;
+	width: 100%;
+	display: inline-block;
+	float: left;
+}
+
+* {
+	box-sizing: border-box;
+
+}
+
+/* Add padding to containers */
+#container {
+    background-color: white;
+    width: 60%;
+    min-width: 400px;
+    box-sizing: border-box;
+    margin-left: 20%;
+}
+
+
+#join_content{
+	overflow: hidden;
+	width: 100%;
+}
+
+label {
+	width: 100%;
+	display: inline-block;
+	float: left;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+	width:100%;
+	padding: 15px;
+	margin: 5px 0 22px 0;
+	display: inline-block;
+	border: none;
+	background: #f1f1f1;
+}
+
+hr {
+	width: 100%;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+	background-color: #ddd;
+	outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+	border: 1px solid #f1f1f1;
+	margin-bottom: 25px;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 16px 20px;
+	margin: 8px 0;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+	opacity: 0.9;
+}
+
+.registerbtn:hover {
+	opacity: 1;
+}
+
+/* Add a blue text color to links */
+a {
+	color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+	background-color: #f1f1f1;
+	text-align: center;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	checkVali();
+	postPop();
+});
+
+function postPop(){
+	$("#showPostCode").postcodifyPopUp();
+}
+
+//아이디 중복되면 true로 바꿀 변수
+var flag=true;
+function checkVali(){
+	$("#bt_regist").click(function() {
+		var email = $("#email").val();
+		var pass = $("#password").val();
+		var rePass = $("#rePassword").val();
+		var addr1=$("#addr1").val();
+		var addr2=$("#addr2").val();
+		
+		$("#addr").val(addr1+addr2);
+		
+		
+		/* var emailVal = frm.Email.value; */
+		check_email = email
+				.search(/^\s*[\w\~\-\.]+\@[\w\~\-]+(\.[\w\~\-]+)+\s*$/g);
+		var checkEmailVal = $("#email").val();
+		if (check_email != 0) {
+			alert('이메일 형식이 일치하지 않습니다.');
+			$("#email").focus();
+			return;
+		}else {
+			$.ajax({
+				url:"/member/member/loginCheck",
+				type:"POST",
+				data:{
+					"checkEmailVal":checkEmailVal
+				},
+				success:function(result){
+					if(result=="1"){
+						alert("중복되는 이메일입니다");
+						flag=true;
+						return;
+					}else{
+						flag=false;
+					}
+				}
+			});
+			
+		}
+		
+		if(flag==false){
+			if (pass == "") {
+				alert("비밀번호를 입력해주세요.");
+				$("#password").focus();
+				return;
+			} else if (pass != rePass) {
+				alert("비밀번호가 일치하지 않습니다.");
+				$("#password").focus();
+				return;
+			} else {
+				$("form").attr({
+					"action" : "/member/regist",
+					"method" : "POST"
+				});
+				$("form").submit();
+			}
+		}	
+		
+	})
+}
+</script>
+</head>
+<body>
+<div class="wrapper">
+	<div id="header">
+		<a href="/hc"><img src="/resources/img/logo/logo_black.png"></a>
+	</div>
+	<div id="container" role="main">
+		<hr>
+		<div id="content">
+			<div id="join_content">
+				<form>
+					<!-- 여기서 isMember는 yes로 설정 -->
+					<input type="hidden" name="isMember" id="isMember" value="yes">
+					<label for="email"><b>Email</b></label> 
+					<input type="text" placeholder="Email" name="email" id="email" required>
+					<label for="psw"><b>Password</b></label> 
+					<input type="password" placeholder="Enter Password" name="password" id="password" required> 
+					<label for="rePassword"><b>Repeat Password</b></label> 
+					<input type="password" placeholder="Repeat Password" name="rePassword" id="rePassword" required>
+					<label for="name"><b>Name</b></label> 
+					<input type="text" placeholder="Name" name="name" id="name" required> 
+					
+					<label for="addr"><b>Addr</b></label>
+					<input type="text" placeholder="Postcode" name="postcode" id="postcode" class="postcodify_postcode5" 
+							readonly="readonly" style="max-width: 160px;" required>
+					<a id="showPostCode" style="color: black;">Search</a>
+					<input type="hidden" name="addr" id="addr"> 
+					<input type="text" placeholder="Address" class="postcodify_address" name="addr1" id="addr1" required> 
+					<input type="text" placeholder="Detail_address" name="addr2" id="addr2" required> 
+					
+					<label for="phone"><b>Phone</b></label> 
+					<input type="text" placeholder="Phone" name="phone" id="phone" required>
+		
+					
+				</form>
+			</div>
+		</div>
+		<hr>
+
+		<p>
+			By creating an account you agree to our <a href="#">Terms & Privacy</a>
+		</p>
+
+		<button type="button" id="bt_regist" class="registerbtn">Register</button>
+	</div>
+
+	<div class="container signin">
+		<p>
+			Already have an account? <a href="/member/member/login">Sign in</a>
+		</p>
+	</div>
+</div>
+
+
+</body>
+</html>
