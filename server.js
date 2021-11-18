@@ -120,7 +120,9 @@ app.get("/member_myPage", (req, res) => {
     res.render('member_myPage');
 });
 app.get("/member_signup", (req, res) => {
-    res.render('member_signup');
+    res.render('member_signup', {
+        layout: "empty"
+    });
 });
 app.get("/member_login", (req, res) => {
     res.render('member_login', {

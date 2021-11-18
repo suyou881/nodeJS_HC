@@ -1,24 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HC | 공식 온라인 스토어</title>
-<link rel="shortcut icon" type="image/x-icon" href="/resources/img/logo/logo_black.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="/img/logo/logo_black.ico" />
 <style>
+	
 #header, p{
 text-align: center;
 }
-
+html{
+max-width: 1300px;
+min-width: 800px;
+margin: auto;
+}
 body {
 	font-family: Arial, Helvetica, sans-serif;
 	width: auto;
 	margin: 0;
 	padding: 0;
 	position: relative;
-	padding: 0 100px;
+	padding: 0 50px;
 }
 
 label {
@@ -53,6 +56,12 @@ label {
 	display: inline-block;
 	float: left;
 }
+.container_signin{
+	width: 60%;
+    min-width: 400px;
+    box-sizing: border-box;
+    margin-left: 20%;
+}
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
@@ -64,10 +73,6 @@ input[type=text], input[type=password] {
 	background: #f1f1f1;
 }
 
-hr {
-	width: 100%;
-}
-
 input[type=text]:focus, input[type=password]:focus {
 	background-color: #ddd;
 	outline: none;
@@ -77,6 +82,7 @@ input[type=text]:focus, input[type=password]:focus {
 hr {
 	border: 1px solid #f1f1f1;
 	margin-bottom: 25px;
+	width: 100%;
 }
 
 /* Set a style for the submit button */
@@ -105,7 +111,98 @@ a {
 	background-color: #f1f1f1;
 	text-align: center;
 }
+
+.flex_box{
+	display: flex;
+	justify-content: space-around;
+	margin: 5px 0 0 0;
+}
+
+.userName{
+      {{!-- background-color: #03658C;       --}}
+      {{!-- width: 50px;
+      height: 50px; --}}
+	  width:49%;
+      border-radius: 10px;
+}
+.address{
+	border-radius: 10px;
+	width:24%;
+}
 </style>
+
+</head>
+<body>
+<div class="wrapper">
+	<div id="header">
+		<a href="/hc"><img src="/img/logo/logo_black.png"></a>
+	</div>
+	<div id="container" role="main">
+		<hr>
+		<div id="content">
+			<div id="join_content">
+				<form>
+					<!-- 여기서 isMember는 yes로 설정 -->
+					<div class="flex_box">
+						<div class="userName">
+							<label for="first_name"><b>First Name</b></label> 
+							<input type="text" placeholder="First Name" name="firstName" id="firstName" required>
+						</div>
+						<div class="userName">
+							<label for="last_name"><b>Last Name</b></label>
+							<input type="text" placeholder="Last Name" name="lastName" id="lastName" required>
+						</div>
+					</div>
+					<input type="hidden" name="isMember" id="isMember" value="yes">
+					<label for="email"><b>Email</b></label> 
+					<input type="text" placeholder="Email" name="email" id="email" required>
+					<label for="psw"><b>Password</b></label> 
+					<input type="password" placeholder="Enter Password" name="password" id="password" required> 
+					<label for="rePassword"><b>Repeat Password</b></label> 
+					<input type="password" placeholder="Repeat Password" name="rePassword" id="rePassword" required>
+					
+					<div class="flex_box">
+                        <div class="address">
+                            <label for="addressStreet">Address (Street):</label>
+                            <input class="form-control" id="addressStreet" name="addressStreet" type="text"  />
+                        </div>
+						<div class="address">
+							<label for="addressCity">Address (City):</label>
+							<input class="form-control" id="addressCity" name="addressCity" type="text"  />
+						</div>
+						<div class="address">
+								<label for="addressState">Address (State):</label>
+								<input class="form-control" id="addressState" name="addressState" type="text"  />
+						</div>
+						<div class="address">
+							<label for="addressPostal">Address (Zip Code):</label>
+							<input class="form-control" id="addressPostal" name="addressPostal" type="text" />
+						</div>
+					</div>
+					
+					<label for="phone"><b>Phone</b></label> 
+					<input type="text" placeholder="Phone" name="phone" id="phone" required>
+		
+					
+				</form>
+			</div>
+		</div>
+		<hr>
+
+		<p>
+			By creating an account you agree to our <a href="#">Terms & Privacy</a>
+		</p>
+
+		<button type="button" id="bt_regist" class="registerbtn">Register</button>
+	</div>
+
+	<div class="container_signin">
+		<p>
+			Already have an account? <a href="/member/member/login">Sign in</a>
+		</p>
+	</div>
+</div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script src="//d1p7wdleee1q2z.cloudfront.net/post/search.min.js"></script>
@@ -181,59 +278,5 @@ function checkVali(){
 	})
 }
 </script>
-</head>
-<body>
-<div class="wrapper">
-	<div id="header">
-		<a href="/hc"><img src="/resources/img/logo/logo_black.png"></a>
-	</div>
-	<div id="container" role="main">
-		<hr>
-		<div id="content">
-			<div id="join_content">
-				<form>
-					<!-- 여기서 isMember는 yes로 설정 -->
-					<input type="hidden" name="isMember" id="isMember" value="yes">
-					<label for="email"><b>Email</b></label> 
-					<input type="text" placeholder="Email" name="email" id="email" required>
-					<label for="psw"><b>Password</b></label> 
-					<input type="password" placeholder="Enter Password" name="password" id="password" required> 
-					<label for="rePassword"><b>Repeat Password</b></label> 
-					<input type="password" placeholder="Repeat Password" name="rePassword" id="rePassword" required>
-					<label for="name"><b>Name</b></label> 
-					<input type="text" placeholder="Name" name="name" id="name" required> 
-					
-					<label for="addr"><b>Addr</b></label>
-					<input type="text" placeholder="Postcode" name="postcode" id="postcode" class="postcodify_postcode5" 
-							readonly="readonly" style="max-width: 160px;" required>
-					<a id="showPostCode" style="color: black;">Search</a>
-					<input type="hidden" name="addr" id="addr"> 
-					<input type="text" placeholder="Address" class="postcodify_address" name="addr1" id="addr1" required> 
-					<input type="text" placeholder="Detail_address" name="addr2" id="addr2" required> 
-					
-					<label for="phone"><b>Phone</b></label> 
-					<input type="text" placeholder="Phone" name="phone" id="phone" required>
-		
-					
-				</form>
-			</div>
-		</div>
-		<hr>
-
-		<p>
-			By creating an account you agree to our <a href="#">Terms & Privacy</a>
-		</p>
-
-		<button type="button" id="bt_regist" class="registerbtn">Register</button>
-	</div>
-
-	<div class="container signin">
-		<p>
-			Already have an account? <a href="/member/member/login">Sign in</a>
-		</p>
-	</div>
-</div>
-
-
 </body>
 </html>
